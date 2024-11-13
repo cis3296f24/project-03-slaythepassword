@@ -32,4 +32,10 @@ public class UserImpl implements User{
             }
         }
     }
+
+    @Override
+    public int getHealth()
+    {
+        return health;
+    }
 }

@@ -9,4 +9,10 @@ public interface User {
 
 
     public void restorehp(Integer value);
+
+
+
+
+    public int getHealth();
 }
+

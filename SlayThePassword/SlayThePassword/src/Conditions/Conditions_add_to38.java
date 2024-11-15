@@ -11,4 +11,9 @@ public class Conditions_add_to38 implements Conditions {
         }
     }
 
+    @Override
+    public int getDifficulty() {
+        return 2;
+    }
+
 }

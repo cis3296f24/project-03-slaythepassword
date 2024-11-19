@@ -1,13 +1,20 @@
 package Conditions;
 
 public class Conditions_L1_Length implements Conditions {
-    String hint = "yadayadayada";
 
     @Override
-    public void checkCondition(String input) {
-        int expectedLength = 10;
-        if (input == null || input.length() != expectedLength) {
-            throw new AssertionError(hint);
+    public boolean checkCondition(String input) {
+        if (input == null) {
+            return false;
         }
+
+        int expectedLength = 10;
+        return input.length() == expectedLength;
+
+    }
+
+    @Override
+    public String toString() {
+        return "Password must be 10 characters long";
     }
 }

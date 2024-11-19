@@ -1,20 +1,19 @@
+
 import java.util.Scanner;
 
 /**
- *   Class containing the main game loop. The user
- *   is thrown into a loop and given the objective
- *   of submitting the correct password based on a
- *   hint.
+ * Class containing the main game loop. The user
+ * is thrown into a loop and given the objective
+ * of submitting the correct password based on a
+ * hint.
  *
- *   If the user submits the correct password, they
- *   gain health; if the password is incorrect, they
- *   lose health. The game ends when the user's HP
- *   is zero.
+ * If the user submits the correct password, they
+ * gain health; if the password is incorrect, they
+ * lose health. The game ends when the user's HP
+ * is zero.
  */
-public class Game
-{
-    public static void main(String[] args) throws InterruptedException
-    {
+public class Game {
+    public static void main(String[] args) throws InterruptedException {
         User user = new UserImpl();
         Password password;
         int lvl = 1;
@@ -28,8 +27,7 @@ public class Game
         Thread.sleep(2000);
 
         // Game loop, which ends when the player's HP is 0
-        while (user.getHealth() != 0)
-        {
+        while (user.getHealth() > 0) {
             password = new Password();
 
             System.out.println("Lvl." + lvl + ", HP: " + user.getHealth());

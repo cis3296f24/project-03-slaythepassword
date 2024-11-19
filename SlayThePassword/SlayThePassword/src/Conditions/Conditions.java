@@ -9,5 +9,5 @@ public interface Conditions {
      * in relation to other conditions.
      */
 
-    void checkCondition(String input);
+    boolean checkCondition(String input);
 }

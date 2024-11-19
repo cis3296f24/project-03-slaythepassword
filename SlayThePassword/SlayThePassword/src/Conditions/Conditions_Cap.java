@@ -1,13 +1,19 @@
 package Conditions;
 
 public class Conditions_Cap implements Conditions {
-    String hint = "Password must contain 1 Uppercase letter ";
 
     @Override
-    public void checkCondition(String input) {
-
-        if (input == null || !input.matches(".*[A-Z].*")) {
-            throw new AssertionError(hint);
+    public boolean checkCondition(String input) {
+        if (input == null) {
+            return false;
         }
+
+        return input != null && input.matches(".*[A-Z].*");
+
+    }
+
+    @Override
+    public String toString() {
+        return "Password must contain 1 Uppercase letter";
     }
 }

@@ -1,16 +1,21 @@
 package Conditions;
 
 public class Conditions_Special_char implements Conditions {
-    String hint = "Password must contain a special Character";
 
     @Override
-    public void checkCondition(String input) {
+    public boolean checkCondition(String input) {
 
-        if (input == null || !input.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*")) {
-            throw new AssertionError(hint);
-
+        if (input == null) {
+            return false;
         }
 
+        return input.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*");
+
+    }
+
+    @Override
+    public String toString() {
+        return "Password must contain a special Character";
     }
 
 }

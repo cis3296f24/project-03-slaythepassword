@@ -1,31 +1,51 @@
 
 
 public class UserImpl implements User{
+    public String username;
     public int health;
     public int maxHealth;
 
-    public UserImpl(){
+    public UserImpl(String username){
+        this.username = username;
         health = 5;
         maxHealth = 5;
     }
 
     @Override
-    public void losehp(int value){
-        health -= value;
-        if (health < 0)
-            health = 0;
+    public void losehp(Integer value){
+        if(value == null){
+            health -= 1;
+        }
+        else{
+            health -= value;
+        }
     }
 
     @Override
-    public void restorehp(int value){
-        health += value;
-        if (health > maxHealth)
+    public void restorehp(Integer value){
+        if(value == null){
             health = maxHealth;
+        }
+        else{
+            if(health + value >= maxHealth){
+                restorehp(maxHealth - health);
+            }else{
+                health += value;
+            }
+        }
     }
 
     @Override
     public int getHealth()
     {
         return health;
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

@@ -13,6 +13,7 @@ import java.util.Scanner;
  * is zero.
  */
 public class Game {
+
     public static void main(String[] args) throws InterruptedException {
         User user = new UserImpl();
         Password password;
@@ -23,7 +24,7 @@ public class Game {
         // Opening formalities
         System.out.println("@---------------@\nSLAY THE PASSWORD\n@----------------@");
         Thread.sleep(2000);
-        System.out.println("Submit the correct passwords and win!");
+        System.out.println("Submit the correct passwords and win!\n");
         Thread.sleep(2000);
 
         // Game loop, which ends when the player's HP is 0
@@ -34,7 +35,9 @@ public class Game {
             password.displayConditions(); // Display password hint
 
             // Take password input from the user
+            System.out.print("Enter password: ");
             input = scanner.nextLine();
+            System.out.println();
 
             // Validate that the password is correct
             try {
@@ -42,11 +45,13 @@ public class Game {
 
             } catch (AssertionError e) { // Wrong password submitted
                 // Hint will be displayed again when AssertionError is thrown
+                System.out.println(e.getMessage() + "\n");
                 user.losehp(1);
                 continue;
             }
 
             // Move to next level and restore some health
+            System.out.println("Correct!\n");
             lvl++;
             user.restorehp(1);
         }

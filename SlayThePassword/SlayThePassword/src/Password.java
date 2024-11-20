@@ -29,14 +29,14 @@ public class Password {
     // method to validate password
     public void validate(String input) {
         if (!currentCondition.checkCondition(input)) {
-            throw new AssertionError("Password does meet condition");
+            throw new AssertionError("Invalid password! Try again.");
         }
 
     }
 
     // show the hint
     public void displayConditions() {
-        System.out.println("hint: " + currentCondition.toString());
+        System.out.println("Hint: " + currentCondition.toString());
 
     }
 

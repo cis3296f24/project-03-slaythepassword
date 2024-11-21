@@ -1,10 +1,12 @@
 
 
 public class UserImpl implements User{
+    public String username;
     public int health;
     public int maxHealth;
 
-    public UserImpl(){
+    public UserImpl(String username){
+        this.username = username;
         health = 5;
         maxHealth = 5;
     }
@@ -37,5 +39,13 @@ public class UserImpl implements User{
     public int getHealth()
     {
         return health;
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

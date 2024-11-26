@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 /**
@@ -14,7 +13,45 @@ import java.util.Scanner;
  */
 public class Game {
 
-    public static void main(String[] args) throws InterruptedException {
+    private User user;
+    private Password password;
+    private String userInput;
+    private int level;
+
+    public Game()
+    {
+        user = new UserImpl();
+        password = new Password();
+        userInput = "";
+        level = 1;
+    }
+
+    public User getUser()
+    {
+        return user;
+    }
+
+    public Password getPassword()
+    {
+        return password;
+    }
+
+    public String getUserInput()
+    {
+        return userInput;
+    }
+
+    public int getLevel()
+    {
+        return level;
+    }
+
+    public int raiseLevel()
+    {
+        level++;
+    }
+
+    /*public static void main(String[] args) throws InterruptedException {
         User user = new UserImpl();
         Password password;
         int lvl = 1;
@@ -55,6 +92,6 @@ public class Game {
             lvl++;
             user.restorehp(1);
         }
-        System.out.println("You lost! Game Over.");
-    }
+        System.out.println("You lost! Game Over.");*/
+}
 }

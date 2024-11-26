@@ -11,10 +11,54 @@ import java.util.Scanner;
  *   lose health. The game ends when the user's HP
  *   is zero.
  */
+<<<<<<< Updated upstream
 public class Game
 {
     public static void main(String[] args) throws InterruptedException
     {
+=======
+public class Game {
+
+    private User user;
+    private Password password;
+    private String userInput;
+    private int level;
+
+    public Game()
+    {
+        user = new UserImpl();
+        password = new Password();
+        userInput = "";
+        level = 1;
+    }
+
+    public User getUser()
+    {
+        return user;
+    }
+
+    public Password getPassword()
+    {
+        return password;
+    }
+
+    public String getUserInput()
+    {
+        return userInput;
+    }
+
+    public int getLevel()
+    {
+        return level;
+    }
+
+    public int raiseLevel()
+    {
+        level++;
+    }
+
+    /*public static void main(String[] args) throws InterruptedException {
+>>>>>>> Stashed changes
         User user = new UserImpl();
         Password password;
         int lvl = 1;
@@ -53,5 +97,5 @@ public class Game
             user.restorehp(1);
         }
         System.out.println("You lost! Game Over.");
-    }
+    }*/
 }

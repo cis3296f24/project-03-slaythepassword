@@ -16,9 +16,10 @@ public class Conditions_add_to38 implements Conditions {
     public String toString() {
         return "The sum of the digits should be 38";
     }
-    // @Override
-    // public int getDifficulty() {
-    // return 2;
-    // }
+
+    @Override
+    public int getDifficulty() {
+        return 1;
+    }
 
 }

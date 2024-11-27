@@ -20,4 +20,9 @@ public class Conditions_Have_Number implements Conditions {
         return "Password must include a number ";
     }
 
+    @Override
+    public int getDifficulty() {
+        return 1;
+    }
+
 }

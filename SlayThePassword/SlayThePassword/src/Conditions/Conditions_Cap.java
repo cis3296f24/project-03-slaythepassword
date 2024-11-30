@@ -16,4 +16,9 @@ public class Conditions_Cap implements Conditions {
     public String toString() {
         return "Password must contain 1 Uppercase letter";
     }
+
+    @Override
+    public int getDifficulty() {
+        return 1;
+    }
 }

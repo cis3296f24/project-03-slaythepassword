@@ -22,14 +22,13 @@ public class UserImpl implements User{
     }
 
     @Override
-    public void restorehp(Integer value){
-        if(value == null){
+    public void restorehp(Integer value) {
+        if (value == null) {
             health = maxHealth;
-        }
-        else{
-            if(health + value >= maxHealth){
-                restorehp(maxHealth - health);
-            }else{
+        } else {
+            if (health + value >= maxHealth) {
+                health = maxHealth; // Directly set health to maxHealth
+            } else {
                 health += value;
             }
         }

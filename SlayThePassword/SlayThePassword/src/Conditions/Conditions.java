@@ -10,4 +10,5 @@ public interface Conditions {
      */
 
     boolean checkCondition(String input);
+    int getDifficulty();
 }

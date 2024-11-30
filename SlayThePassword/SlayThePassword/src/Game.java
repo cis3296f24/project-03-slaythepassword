@@ -53,10 +53,15 @@ public class Game {
 
         // Game loop, which ends when the player's HP is 0
         while (user.getHealth() > 0) {
-            password = new Password();
+            int targetDifficulty = getDifficultyLevel(lvl);
+            password = new Password(targetDifficulty);
+            // Determine difficulty level based on current level
+            String difficultyLevel = targetDifficulty == 1 ? "Easy" : "Medium";
+            System.out.println("Difficulty: " + difficultyLevel); // Announce difficulty level
 
             System.out.println("Lvl." + lvl + ", HP: " + user.getHealth());
             password.displayConditions(); // Display password hint
+
 
             // Take password input from the user
             input = scanner.nextLine();
@@ -68,10 +73,10 @@ public class Game {
             // Validate that the password is correct
             try {
                 password.validate(input);
-
+                user.restorehp(password.getTotalDifficulty()); // More health for harder passwords
             } catch (AssertionError e) { // Wrong password submitted
                 // Hint will be displayed again when AssertionError is thrown
-                user.losehp(1);
+                user.losehp(1 + (lvl - password.getTotalDifficulty()));
                 continue;
             }
 
@@ -80,6 +85,17 @@ public class Game {
             user.restorehp(1);
         }
 
+    }
+
+    // Helper function to determine difficulty level
+    private int getDifficultyLevel(int lvl) {
+        if (lvl < 5) {
+            return 1; // Easy - single condition
+        } else if (lvl < 10) {
+            return 2; // Medium - two conditions
+        } else {
+            return 3; // Hard - three or more conditions (you can implement this later)
+        }
     }
 
     public static void main(String[] args) throws InterruptedException {

@@ -18,4 +18,9 @@ public class Conditions_Special_char implements Conditions {
         return "Password must contain a special Character";
     }
 
+    @Override
+    public int getDifficulty() {
+        return 1;
+    }
+
 }

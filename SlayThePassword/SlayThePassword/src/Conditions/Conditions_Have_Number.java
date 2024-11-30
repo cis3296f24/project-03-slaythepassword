@@ -22,7 +22,7 @@ public class Conditions_Have_Number implements Conditions {
 
     @Override
     public int getDifficulty() {
-        return 1;
+        return 2;
     }
 
 }

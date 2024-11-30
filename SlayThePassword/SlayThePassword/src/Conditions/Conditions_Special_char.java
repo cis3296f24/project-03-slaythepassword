@@ -20,7 +20,7 @@ public class Conditions_Special_char implements Conditions {
 
     @Override
     public int getDifficulty() {
-        return 1;
+        return 5;
     }
 
 }

@@ -19,7 +19,9 @@ public class Conditions_L1_Length implements Conditions {
     }
 
     @Override
+    @Override
     public int getDifficulty() {
-        return 1;
+        return 4;
     }
+
 }

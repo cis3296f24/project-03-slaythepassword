@@ -16,7 +16,7 @@ public class Stack_conditions implements Conditions {
         int intialDiff = stackedConditions.get(0).getDifficulty();
         for (Conditions condition : stackedConditions) {
             if (condition.getDifficulty() != intialDiff) {
-                throw IllegalArgumentException("All conditions in the stack must have the same difficulty");
+                throw new IllegalArgumentException("All conditions in the stack must have the same difficulty");
 
             }
         }

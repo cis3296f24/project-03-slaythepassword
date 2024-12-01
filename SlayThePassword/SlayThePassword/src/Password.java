@@ -4,48 +4,77 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
 import java.util.Random;
-import Conditions.Conditions;
 
 public class Password {
 
     private ArrayList<Conditions> conditionsList;
     private Conditions currentCondition;
 
-    private int totalDifficulty;
+    // private int totalDifficulty;
 
     public Password(int targetDifficulty) {
         // create a list to store the conditions
         conditionsList = new ArrayList<>();
-        conditionsList.add(new Conditions_add_to38());
+        conditionsList.add(new Conditions_contain_vowel());
         conditionsList.add(new Conditions_Cap());
         conditionsList.add(new Conditions_Have_Number());
         conditionsList.add(new Conditions_L1_Length());
+        conditionsList.add(new Conditions_palindrome());
+        conditionsList.add(new Conditions_threetypes());
+        conditionsList.add(new Conditions_startend_letter());
         conditionsList.add(new Conditions_Special_char());
+        conditionsList.add(new Conditions_have_twocap());
 
-        totalDifficulty = 0;
+        // totalDifficulty = 0;
 
-        // generate a random index for randome condition
+        // filter conditons based on difficulty
+        List<Conditions> filteredConditions = new ArrayList<>();
+        for (Conditions condition : conditionsList) {
+            if (condition.getDifficulty() == targetDifficulty) {
+                filteredConditions.add(condition);
+
+            }
+
+        }
+        if (filteredConditions.isEmpty()) {
+            throw new IllegalArgumentException("No conditions with difficulty: " + targetDifficulty);
+
+        }
+
+        int numOfConditions = getNumofConditions(targetDifficulty);
+
+        // generate the random conditions into a list
         Random rand = new Random();
-//        int index = rand.nextInt(conditionsList.size());
-//        currentCondition = conditionsList.get(index);
-        if (targetDifficulty == 1) { // Easy difficulty
-            // Select one random condition
-            currentCondition = conditionsList.get(rand.nextInt(conditionsList.size()));
-            totalDifficulty = currentCondition.getDifficulty();
-        } else { // Medium or Hard difficulty
-            // Select two distinct random conditions
-            int index1 = rand.nextInt(conditionsList.size());
-            int index2;
-            do {
-                index2 = rand.nextInt(conditionsList.size());
-            } while (index1 == index2); // Ensure the two conditions are different
+        List<Conditions> selectedConditions = new ArrayList<>();
+        while (selectedConditions.size() < numOfConditions && !filteredConditions.isEmpty()) {
+            // select a random conditon from the index and make sure no uniques
+            int index = rand.nextInt(filteredConditions.size());
+            selectedConditions.add(filteredConditions.remove(index));
 
-            Conditions condition1 = conditionsList.get(index1);
-            Conditions condition2 = conditionsList.get(index2);
+        }
+        // stack conditions if needed
+        if (numOfConditions > 1) {
+            this.currentCondition = new Stack_conditions(selectedConditions, numOfConditions);
 
-            // Combine the conditions (you'll need to implement this)
-            currentCondition = combineConditions(condition1, condition2);
-            totalDifficulty = condition1.getDifficulty() + condition2.getDifficulty();
+        } else {
+            this.currentCondition = selectedConditions.get(0);
+        }
+
+    }
+
+    // number of random conditons to gnerate
+    public int getNumofConditions(int targetDifficulty) {
+        // 1-3 get 1 condition
+        if (targetDifficulty <= 3) {
+            return 1;
+            // 4-6 return 2 condition
+        } else if (targetDifficulty <= 6) {
+            return 2;
+
+        }
+        // 7-8 return 3 conditions
+        else {
+            return 3;
         }
 
     }
@@ -62,29 +91,6 @@ public class Password {
     public void displayConditions() {
         System.out.println("Hint: " + currentCondition.toString());
 
-    }
-
-    public int getTotalDifficulty() {
-        return totalDifficulty;
-    }
-
-    private Conditions combineConditions(Conditions condition1, Conditions condition2) {
-        return new Conditions() {
-            @Override
-            public boolean checkCondition(String input) {
-                return condition1.checkCondition(input) && condition2.checkCondition(input);
-            }
-
-            @Override
-            public int getDifficulty() {
-                return condition1.getDifficulty() + condition2.getDifficulty();
-            }
-
-            @Override
-            public String toString() {
-                return condition1.toString() + " and " + condition2.toString();
-            }
-        };
     }
 
 }

@@ -19,22 +19,24 @@ import java.util.Scanner;
  * is zero.
  */
 public class Game {
-//    public void save(User user,String input) {
-//        // write data into record.txt file
-//        try {
-//            FileWriter fileWriter = new FileWriter( "record.txt", true); // 第二个参数为true表示追加写入
-//            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-//            bufferedWriter.write(user.getMaxHealth() + ", " + user.getHealth() + ", " + input + "\n");
-//            bufferedWriter.close();
-//            fileWriter.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    // public void save(User user,String input) {
+    // // write data into record.txt file
+    // try {
+    // FileWriter fileWriter = new FileWriter( "record.txt", true); //
+    // 第二个参数为true表示追加写入
+    // BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+    // bufferedWriter.write(user.getMaxHealth() + ", " + user.getHealth() + ", " +
+    // input + "\n");
+    // bufferedWriter.close();
+    // fileWriter.close();
+    // } catch (IOException e) {
+    // e.printStackTrace();
+    // }
+    // }
     @SneakyThrows
-    public void play() throws InterruptedException{
-//        String username = "";
-//        User user = new UserImpl(username);
+    public void play() throws InterruptedException {
+        // String username = "";
+        // User user = new UserImpl(username);
         Password password;
         int lvl = 1;
         Scanner scanner = new Scanner(System.in);
@@ -50,7 +52,6 @@ public class Game {
         System.out.println("Submit the correct passwords and win!");
         Thread.sleep(2000);
 
-
         // Game loop, which ends when the player's HP is 0
         while (user.getHealth() > 0) {
             int targetDifficulty = getDifficultyLevel(lvl);
@@ -61,7 +62,6 @@ public class Game {
 
             System.out.println("Lvl." + lvl + ", HP: " + user.getHealth());
             password.displayConditions(); // Display password hint
-
 
             // Take password input from the user
             input = scanner.nextLine();

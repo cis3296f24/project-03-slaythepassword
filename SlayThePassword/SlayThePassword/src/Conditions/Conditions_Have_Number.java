@@ -11,7 +11,7 @@ public class Conditions_Have_Number implements Conditions {
             return false;
         }
 
-        return !input.matches(".*\\d.*");
+        return input.matches(".*\\d.*");
 
     }
 

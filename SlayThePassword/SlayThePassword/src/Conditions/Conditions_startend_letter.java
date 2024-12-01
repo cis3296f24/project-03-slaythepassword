@@ -18,6 +18,6 @@ public class Conditions_startend_letter implements Conditions {
 
     @Override
     public int getDifficulty() {
-        return 6;
+        return 7;
     }
 }

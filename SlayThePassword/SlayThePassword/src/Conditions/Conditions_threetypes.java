@@ -24,6 +24,6 @@ public class Conditions_threetypes implements Conditions {
 
     @Override
     public int getDifficulty() {
-        return 7;
+        return 4;
     }
 }

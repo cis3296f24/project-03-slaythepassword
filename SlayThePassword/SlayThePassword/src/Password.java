@@ -24,6 +24,10 @@ public class Password {
         conditionsList.add(new Conditions_startend_letter());
         conditionsList.add(new Conditions_Special_char());
         conditionsList.add(new Conditions_have_twocap());
+        conditionsList.add(new Conditions_alphaSort());
+        conditionsList.add(new Conditions_have_twospecialc());
+        conditionsList.add(new Conditions_have_twocap());
+        conditionsList.add(new Conditions_containSlay());
 
         // totalDifficulty = 0;
 

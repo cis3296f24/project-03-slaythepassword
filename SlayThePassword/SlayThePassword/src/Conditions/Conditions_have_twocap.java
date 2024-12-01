@@ -24,6 +24,6 @@ public class Conditions_have_twocap implements Conditions {
 
     @Override
     public int getDifficulty() {
-        return 4;
+        return 5;
     }
 }

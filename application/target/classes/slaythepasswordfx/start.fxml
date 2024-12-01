@@ -43,7 +43,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: 000000;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slaythepasswordfx.PrimaryController">
+<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: 000000;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -96,7 +96,7 @@
                   <Image url="@640px-Slay_the_Spire_Logo.PNG" />
                </image>
             </ImageView>
-            <Button layoutX="293.0" layoutY="239.0" mnemonicParsing="false" text="Start Game" onAction="#switchToSecondary">
+            <Button layoutX="293.0" layoutY="239.0" mnemonicParsing="false" text="Start Game">
                <effect>
                   <Glow />
                </effect>

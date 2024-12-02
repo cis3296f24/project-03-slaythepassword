@@ -11,7 +11,11 @@
         <HBox alignment="TOP_LEFT" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
             <Label fx:id="HPLabel" text="Health / MaxHealth" />
             <Label fx:id="nameLabel" text="Name" />
+            <Label fx:id="LvlLabel" text ="Level: " />
         <Hbox>
+        <!--Display Hints -->
+        <Label text="Hints:" style="-fx-font-weight: bold;" />
+        <Label fx:id="hintsLabel" wrapText="true" style="-fx-text-fill: darkgreen;" />
         <!--Logo display-->
         <ImageView fx:id="logoImageView" fitHeight="50.0" fitWidth="50.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="20.0" />
         <!--Button to return to other page-->
@@ -19,7 +23,7 @@
         <Button fx:id="secondaryButton" text="Switch to Primary View" onAction="#switchToPrimary" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
         <!--User Input-->
         <VBox spacing="10.0" alignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="150.0">
-            <TextField fx:id="userInput" promptText="Enter your input" prefWidth="360.0" />
+            <TextField fx:id="promptText" promptText="Enter your input" prefWidth="360.0" />
             <Button text="Submit" onAction="#captureUserInput" />
         </VBox>
     </children>

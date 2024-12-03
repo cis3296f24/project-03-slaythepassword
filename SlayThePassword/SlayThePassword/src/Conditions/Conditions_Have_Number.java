@@ -2,14 +2,22 @@
 package Conditions;
 
 public class Conditions_Have_Number implements Conditions {
-    String hint = "Password must include a number ";
 
     @Override
-    public void checkCondition(String input) {
 
-        if (input == null || !input.matches(".*\\d.*")) {
+    public boolean checkCondition(String input) {
 
-            throw new AssertionError(hint);
+        if (input == null) {
+            return false;
         }
+
+        return !input.matches(".*\\d.*");
+
     }
+
+    @Override
+    public String toString() {
+        return "Password must include a number ";
+    }
+
 }

@@ -1,5 +1,4 @@
-package slaythepasswordfx;
-
+package slaythepasswordfx; // NEEDED environment variables
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -14,10 +13,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.classfile.instruction.LocalVariable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.locks.Condition;
 
 //essential FXML variables
 @FXML
@@ -32,18 +31,21 @@ private ImageView logoImageView;
 private Label hintLabel;
 @FXML 
 private Label LvlLabel;
+@FXML
+private StringProperty promptText = new SimpleStringProperty();
+
 
 
 //Essential Backend variables
 
 //health variable
-private IntegerProperty health = new SimpleIntegerProperty(/*game.User.getHealth()*/);
+private IntegerProperty health = new SimpleIntegerProperty();
 //lvl variable
-private IntegerProperty lvl = new SimpleIntegerProperty(/*game.User.getlevel()*/);
+private IntegerProperty lvl = new SimpleIntegerProperty();
 //hint vatriable
-private StringProperty hint = new SimpleStringPRoperty(/*game.condition.hint */);
+private StringProperty hint = new SimpleStringPRoperty();
 //maxHealth variable
-private final int maxHealth;// = game.user.getMaxHP
+private final int maxHealth = game.getUser().getMaxHP();
 //gameloop, where variables are found
 private Game game;
 //user prompts
@@ -51,7 +53,6 @@ private List<String> prompts = new ArrayList<>();
 //hint texts for passwords.
 private StringProperty hintText = new SimpleStringProperty();
 //user prompt text
-private StringProperty promptText = new SimpleStringProperty();
 
 
 public class SecondaryController {
@@ -69,7 +70,7 @@ public class SecondaryController {
     }
 
     @FXML
-    public void load(Game loadedGameLoop*/){ // initialize a saved gameloop
+    public void load(Game loadedGameLoop){ // initialize a saved gameloop
         this.game = loadedGameLoop;
         setDisplays();
     }
@@ -87,7 +88,7 @@ public class SecondaryController {
         }
 
         //set the Health labels
-        health.set(game.getHealth());
+        health.set(game.getUser().getHealth());
         HPLabel.textProperty().bind(Bindings.createStringBinding(() -> String.format("%d / %d", health.get(), maxHealth), health)); 
 
         //Set the logo
@@ -97,11 +98,12 @@ public class SecondaryController {
         //display the hints
         String hints = getConditionHints();
         hintText.set(hints);
-        hintLabel.textProperty().bind(hints);
+        hintLabel.textProperty().bind(hintText);
 
         //display the level
-
-
+        lvl.set(game.getLevel());
+        lvlLabel.textProperty().bind(Binding.createStringBinding(() -> String.format("Lvl: %d", lvl.get()), lvl));
+        
     }
 
     private String getConditionHints() {
@@ -121,11 +123,26 @@ public class SecondaryController {
 
     @FXML
     private void captureUserInput(){
+
+        //user input
         String Input = userInput.getText();
 
-    /*  
-    * 
-    */
+
+
+        //correct input.
+        boolean correct = game.validateUserInput(Input); //assign to value and run function. Game logic present inside game class.
+        if(correct){
+            userInput.clear();
+            setDisplays();
+        }else{
+            health.set(game.getUser().getHealth()); //duduct health on U.I
+            setDisplays();
+
+            //end on click if health = 0
+            if(health.get() <= 0){
+                EndPopup();
+            }
+        }
         userInput.clear();
     }
 
@@ -138,7 +155,7 @@ public class SecondaryController {
         //wait for user to close popup
         gameOver.showAndWait(ifPresent(response ->{
             if(response == ButtonType.OK){
-                    switchToPrimary();
+                switchToPrimary();
             }
         }));
     }
@@ -163,5 +180,18 @@ public class SecondaryController {
         }
         Random random = new Random();
         return prompts.get(random.nextInt(prompts.size()));
+    }
+}
+package slaythepasswordfx;
+
+import java.io.IOException;
+
+import javafx.fxml.FXML;
+
+public class SecondaryController {
+
+    @FXML
+    private void switchToPrimary() throws IOException {
+        App.setRoot("test");
     }
 }

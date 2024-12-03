@@ -26,16 +26,15 @@
             <artifactId>javafx-fxml</artifactId>
             <version>13</version>
         </dependency>
-
  
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.9.2</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>
+            <groupId>slaythepassword</groupId>
+            <artifactId>slaythepassword-backend</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../SlayThePassword/SlayThePassword.jar</systemPath>
+        </dependency>-->
  
-
     </dependencies>
 
     <repositories>

@@ -46,9 +46,32 @@ public class Game {
         return level;
     }
 
-    public int raiseLevel()
+    public void raiseLevel()
     {
         level++;
+    }
+
+    public void validateUserInput()
+    {
+        // Validate that the password is correct
+        try {
+            this.password.validate(this.userInput);
+        }
+        catch (AssertionError e) { // Wrong password submitted
+            // Hint will be displayed again when AssertionError is thrown
+            System.out.println(e.getMessage() + "\n");
+            this.user.losehp(1);
+
+            if (this.user.getHealth() == 0)
+            {
+                System.out.println("You lost! Game Over.");
+            }
+        }
+        // Move to next level and restore some health
+        System.out.println("Correct!\n");
+        lvl++;
+        this.user.restorehp(1);
+        this.password = new Password();
     }
 
     /*public static void main(String[] args) throws InterruptedException {
@@ -57,12 +80,6 @@ public class Game {
         int lvl = 1;
         Scanner scanner = new Scanner(System.in);
         String input;
-
-        // Opening formalities
-        System.out.println("@---------------@\nSLAY THE PASSWORD\n@----------------@");
-        Thread.sleep(2000);
-        System.out.println("Submit the correct passwords and win!\n");
-        Thread.sleep(2000);
 
         // Game loop, which ends when the player's HP is 0
         while (user.getHealth() > 0) {
@@ -92,6 +109,6 @@ public class Game {
             lvl++;
             user.restorehp(1);
         }
-        System.out.println("You lost! Game Over.");*/
-}
+        System.out.println("You lost! Game Over.");
+    }*/
 }

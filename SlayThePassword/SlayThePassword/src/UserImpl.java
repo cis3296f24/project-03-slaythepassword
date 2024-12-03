@@ -1,5 +1,3 @@
-
-
 public class UserImpl implements User{
     public int health;
     public int maxHealth;

@@ -34,6 +34,13 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/../SlayThePassword/SlayThePassword.jar</systemPath>
         </dependency>-->
+         <dependency>
+        <groupId>local</groupId>
+        <artifactId>game_logic</artifactId>
+        <version>1.0</version>
+        <scope>system</scope>
+        <systemPath>${project.basedir}/libs/game_logic.jar</systemPath>
+    </dependency>
  
     </dependencies>
 

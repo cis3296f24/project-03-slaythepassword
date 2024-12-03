@@ -9,51 +9,55 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.classfile.instruction.LocalVariable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.locks.Condition;
 
-//essential FXML variables
-@FXML
-private TextField userInput;
-@FXML
-private Label HPLabel;
-@FXML
-private ImageView logoImageView;
-@FXML
-private Label hintLabel;
-@FXML 
-private Label LvlLabel;
-@FXML
-private StringProperty promptText = new SimpleStringProperty();
-
-
-
-//Essential Backend variables
-
-//health variable
-private IntegerProperty health = new SimpleIntegerProperty();
-//lvl variable
-private IntegerProperty lvl = new SimpleIntegerProperty();
-//maxHealth variable
-private final int maxHealth = 5;
-//gameloop, where variables are found
-private Game game;
-//user prompts
-private List<String> prompts = new ArrayList<>();
-//hint texts for passwords.
-private StringProperty hintText = new SimpleStringProperty();
-//user prompt text
-
 
 public class SecondaryController {
+
+    //essential FXML variables
+    @FXML
+    private TextField userInput;
+    @FXML
+    private Label HPLabel;
+    @FXML
+    private ImageView logoImageView;
+    @FXML
+    private Label hintLabel;
+    @FXML 
+    private Label LvlLabel;
+    @FXML
+    private StringProperty promptText = new SimpleStringProperty();
+
+
+
+    //Essential Backend variables
+
+    //health variable
+    private IntegerProperty health = new SimpleIntegerProperty();
+    //lvl variable
+    private IntegerProperty lvl = new SimpleIntegerProperty();
+    //maxHealth variable
+    private final int maxHealth = 5;
+    //gameloop, where variables are found
+    private Game game;
+    //user prompts
+    private List<String> prompts = new ArrayList<>();
+    //hint texts for passwords.
+    private StringProperty hintText = new SimpleStringProperty();
+    //user prompt text
+
 
     @FXML
     private void switchToPrimary() throws IOException {

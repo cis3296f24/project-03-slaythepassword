@@ -21,7 +21,7 @@ public class Game {
     public Game()
     {
         user = new UserImpl();
-        password = new Password();
+        password = new Password(level);
         userInput = "";
         level = 1;
     }
@@ -72,6 +72,56 @@ public class Game {
         lvl++;
         this.user.restorehp(1);
         this.password = new Password();
+    }
+@SneakyThrows
+    public void play() throws InterruptedException{
+//        String username = "";
+//        User user = new UserImpl(username);
+        Password password;
+        int lvl = 1;
+        Scanner scanner = new Scanner(System.in);
+        String input;
+
+        // Opening formalities
+        System.out.println("@---------------@\nSLAY THE PASSWORD\n@----------------@");
+        Thread.sleep(2000);
+        System.out.println("Please enter your username: !");
+        Thread.sleep(2000);
+        input = scanner.nextLine();
+        User user = new UserImpl(input);
+        System.out.println("Submit the correct passwords and win!");
+        Thread.sleep(2000);
+
+
+        // Game loop, which ends when the player's HP is 0
+        while (user.getHealth() > 0) {
+            password = new Password();
+
+            System.out.println("Lvl." + lvl + ", HP: " + user.getHealth());
+            password.displayConditions(); // Display password hint
+
+            // Take password input from the user
+            input = scanner.nextLine();
+
+            // write data into record.txt file
+            TxtTools txtTools = new TxtTools();
+            txtTools.save(user, input);
+
+            // Validate that the password is correct
+            try {
+                password.validate(input);
+
+            } catch (AssertionError e) { // Wrong password submitted
+                // Hint will be displayed again when AssertionError is thrown
+                user.losehp(1);
+                continue;
+            }
+
+            // Move to next level and restore some health
+            lvl++;
+            user.restorehp(1);
+        }
+
     }
 
     /*public static void main(String[] args) throws InterruptedException {

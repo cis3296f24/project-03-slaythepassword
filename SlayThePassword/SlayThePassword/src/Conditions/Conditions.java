@@ -10,4 +10,8 @@ public interface Conditions {
      */
 
     boolean checkCondition(String input);
+
+    String toString();
+
+    int getDifficulty();
 }

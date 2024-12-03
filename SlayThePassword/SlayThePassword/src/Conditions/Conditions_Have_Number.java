@@ -11,13 +11,18 @@ public class Conditions_Have_Number implements Conditions {
             return false;
         }
 
-        return !input.matches(".*\\d.*");
+        return input.matches(".*\\d.*");
 
     }
 
     @Override
     public String toString() {
         return "Password must include a number ";
+    }
+
+    @Override
+    public int getDifficulty() {
+        return 2;
     }
 
 }

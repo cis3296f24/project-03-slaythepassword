@@ -1,7 +1,9 @@
 package slaythepasswordfx;
 
-import java.io.IOException;
+
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -121,10 +123,25 @@ public class SecondaryController {
     private void captureUserInput(){
         String Input = userInput.getText();
 
-        // Input text into gameloop (gane.check()?)
+    /*  
+    * 
+    */
         userInput.clear();
     }
 
+    private void EndPopup(){
+        //Alert the user that the game has reached its end
+        Alert gameOver = new Alert(AlertType.INFORMATION);
+        gameOver.setTitle("Game Over");
+        gameOver.setContentText("Your health has reached 0.");
+
+        //wait for user to close popup
+        gameOver.showAndWait(ifPresent(response ->{
+            if(response == ButtonType.OK){
+                    switchToPrimary();
+            }
+        }));
+    }
 
     private void loadPromptsFromFile(String filePath) throws IOException {
         InputStream inputStream = getClass().getResourceAsStream(filePath);

@@ -3,6 +3,7 @@ package slaythepasswordfx; // NEEDED environment variables
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -17,14 +18,13 @@ import java.lang.classfile.instruction.LocalVariable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.locks.Condition;
 
 //essential FXML variables
 @FXML
 private TextField userInput;
 @FXML
 private Label HPLabel;
-@FXML
-private Label nameLabel;
 @FXML
 private ImageView logoImageView;
 @FXML
@@ -42,10 +42,8 @@ private StringProperty promptText = new SimpleStringProperty();
 private IntegerProperty health = new SimpleIntegerProperty();
 //lvl variable
 private IntegerProperty lvl = new SimpleIntegerProperty();
-//hint vatriable
-private StringProperty hint = new SimpleStringPRoperty();
 //maxHealth variable
-private final int maxHealth = game.getUser().getMaxHP();
+private final int maxHealth = 5;
 //gameloop, where variables are found
 private Game game;
 //user prompts
@@ -84,7 +82,6 @@ public class SecondaryController {
             promptText.set(randPrompt);
         } catch (IOException e) {
             e.printStackTrace();
-            return;
         }
 
         //set the Health labels
@@ -92,7 +89,7 @@ public class SecondaryController {
         HPLabel.textProperty().bind(Bindings.createStringBinding(() -> String.format("%d / %d", health.get(), maxHealth), health)); 
 
         //Set the logo
-        Image logo = new Image(getClass().getResourceAsStream("/assets/Untitled_Artwork_27.PNG+"));
+        Image logo = new Image(getClass().getResourceAsStream("/assets/Untitled_Artwork_27.PNG"));
         logoImageView.setImage(logo); 
 
         //display the hints
@@ -102,14 +99,14 @@ public class SecondaryController {
 
         //display the level
         lvl.set(game.getLevel());
-        lvlLabel.textProperty().bind(Binding.createStringBinding(() -> String.format("Lvl: %d", lvl.get()), lvl));
+        lvlLabel.textProperty().bind(Bindings.createStringBinding(() -> String.format("Lvl: %d", lvl.get()), lvl));
         
     }
 
     private String getConditionHints() {
     StringBuilder hintsBuilder = new StringBuilder();
 
-    List<Condition> conditions =; /*game.getConditions();*/
+    List<Condition> conditions =; game.getConditions().getConditions();
     for (Condition condition : conditions) { //loop through every condition, add breaks when multiple.
         if (hintsBuilder.length() > 0) {
             hintsBuilder.append("\n"); 
@@ -153,11 +150,11 @@ public class SecondaryController {
         gameOver.setContentText("Your health has reached 0.");
 
         //wait for user to close popup
-        gameOver.showAndWait(ifPresent(response ->{
-            if(response == ButtonType.OK){
-                switchToPrimary();
+        gameOver.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+            switchToPrimary();
             }
-        }));
+        );
     }
 
     private void loadPromptsFromFile(String filePath) throws IOException {
@@ -180,18 +177,5 @@ public class SecondaryController {
         }
         Random random = new Random();
         return prompts.get(random.nextInt(prompts.size()));
-    }
-}
-package slaythepasswordfx;
-
-import java.io.IOException;
-
-import javafx.fxml.FXML;
-
-public class SecondaryController {
-
-    @FXML
-    private void switchToPrimary() throws IOException {
-        App.setRoot("test");
     }
 }

@@ -39,6 +39,11 @@ public class Password {
         conditionsList.add(new Conditions_have_two_digits());
         conditionsList.add(new Conditions_have_lowercase());
         conditionsList.add(new Conditions_three_digits());
+
+        conditionsList.add(new Conditions_AlternatingCase(6));
+        conditionsList.add(new Conditions_LimitedRepeats(6));
+        conditionsList.add(new Conditions_SymbolPairs(7));
+        conditionsList.add(new Conditions_NoSequentialChars(8));
         // totalDifficulty = 0;
 
         // filter conditons based on difficulty

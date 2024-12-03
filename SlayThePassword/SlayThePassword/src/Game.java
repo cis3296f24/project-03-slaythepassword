@@ -1,10 +1,3 @@
-
-import lombok.SneakyThrows;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
@@ -19,24 +12,47 @@ import java.util.Scanner;
  * is zero.
  */
 public class Game {
-    // public void save(User user,String input) {
-    // // write data into record.txt file
-    // try {
-    // FileWriter fileWriter = new FileWriter( "record.txt", true); //
-    // 第二个参数为true表示追加写入
-    // BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-    // bufferedWriter.write(user.getMaxHealth() + ", " + user.getHealth() + ", " +
-    // input + "\n");
-    // bufferedWriter.close();
-    // fileWriter.close();
-    // } catch (IOException e) {
-    // e.printStackTrace();
-    // }
-    // }
-    @SneakyThrows
-    public void play() throws InterruptedException {
-        // String username = "";
-        // User user = new UserImpl(username);
+
+    private User user;
+    private Password password;
+    private String userInput;
+    private int level;
+
+    public Game()
+    {
+        user = new UserImpl();
+        password = new Password();
+        userInput = "";
+        level = 1;
+    }
+
+    public User getUser()
+    {
+        return user;
+    }
+
+    public Password getPassword()
+    {
+        return password;
+    }
+
+    public String getUserInput()
+    {
+        return userInput;
+    }
+
+    public int getLevel()
+    {
+        return level;
+    }
+
+    public int raiseLevel()
+    {
+        level++;
+    }
+
+    /*public static void main(String[] args) throws InterruptedException {
+        User user = new UserImpl();
         Password password;
         int lvl = 1;
         Scanner scanner = new Scanner(System.in);
@@ -84,34 +100,6 @@ public class Game {
             lvl++;
             user.restorehp(1);
         }
-
-    }
-
-    // Helper function to determine difficulty level
-    private int getDifficultyLevel(int lvl) {
-        if (lvl < 5) {
-            return 1; // Easy - single condition
-        } else if (lvl < 10) {
-            return 2; // Medium - two conditions
-        } else {
-            return 3; // Hard - three or more conditions (you can implement this later)
-        }
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-
-        while (true) {
-            new Game().play();
-            System.out.println("You lost! Game Over.Input E to Exit or R to Retry");
-            Scanner scanner = new Scanner(System.in);
-            String flag;
-            flag = scanner.nextLine();
-            if (flag.equals("R")) {
-                System.out.println("Let's play again!");
-            } else {
-                System.out.println("Exit the game!Thank you for playing!");
-                System.exit(0);
-            }
-        }
-    }
+        System.out.println("You lost! Game Over.");*/
+}
 }

@@ -1,5 +1,6 @@
 import Conditions.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
@@ -12,7 +13,7 @@ public class Password {
 
     // private int totalDifficulty;
 
-    public Password(int targetDifficulty) {
+    public Password(int targetDifficulty) throws IOException {
         // create a list to store the conditions
         conditionsList = new ArrayList<>();
         conditionsList.add(new Conditions_contain_vowel());
@@ -28,7 +29,13 @@ public class Password {
         conditionsList.add(new Conditions_have_twospecialc());
         conditionsList.add(new Conditions_have_twocap());
         conditionsList.add(new Conditions_containSlay());
-
+        conditionsList.add(new Conditions_VowelCount(2, 2));
+        conditionsList.add(new Conditions_NoRepeatingChars(3));
+        conditionsList.add(new Conditions_SpecialCharPlacement(4));
+        conditionsList.add(new Conditions_CharDiversity(5));
+        conditionsList.add(new Conditions_NoDictionaryWords(6));
+        conditionsList.add(new Conditions_PatternBased(7, "[a-zA-Z]{2}\\d{2}[a-zA-Z]{2}"));
+        conditionsList.add(new Conditions_ASCIISum(8, 300));
         // totalDifficulty = 0;
 
         // filter conditons based on difficulty

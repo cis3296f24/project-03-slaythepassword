@@ -6,17 +6,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class Conditions_NoDictionaryWords implements Conditions{
+public class Conditions_NoDictionaryWords implements Conditions {
+    private int difficulty;
     private Set<String> dictionary;
 
     public Conditions_NoDictionaryWords(int difficulty) throws IOException {
+        this.difficulty = difficulty;
         this.dictionary = loadDictionary();
     }
 
     private Set<String> loadDictionary() throws IOException {
         Set<String> words = new HashSet<>();
         BufferedReader reader = new BufferedReader(new InputStreamReader(
-                getClass().getResourceAsStream("/dictionary.txt"))); // Assuming dictionary.txt is in resources folder
+                getClass().getResourceAsStream("/dictionary.txt")));
         String line;
         while ((line = reader.readLine()) != null) {
             words.add(line.trim().toLowerCase());
@@ -26,7 +28,7 @@ public class Conditions_NoDictionaryWords implements Conditions{
 
     @Override
     public boolean checkCondition(String input) {
-        String[] words = input.split("\\s+"); // Split into words if there are spaces
+        String[] words = input.split("\\s+");
         for (String word : words) {
             if (dictionary.contains(word.toLowerCase())) {
                 return false;
@@ -35,9 +37,8 @@ public class Conditions_NoDictionaryWords implements Conditions{
         return true;
     }
 
-    public String toString() {
-        return "The password must not contain any common dictionary words.";
+    @Override
+    public int getDifficulty() {
+        return difficulty;
     }
-
-
 }

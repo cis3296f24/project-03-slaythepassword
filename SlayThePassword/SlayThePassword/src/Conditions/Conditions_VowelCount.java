@@ -1,11 +1,13 @@
 
 package Conditions;
 
-public class Conditions_VowelCount implements Conditions{
+public class Conditions_VowelCount implements Conditions {
     private int minVowels;
+    private int difficulty;
 
     public Conditions_VowelCount(int minVowels, int difficulty) {
         this.minVowels = minVowels;
+        this.difficulty = difficulty;
     }
 
     @Override
@@ -20,8 +22,8 @@ public class Conditions_VowelCount implements Conditions{
         return vowelCount >= minVowels;
     }
 
-    public String toString() {
-        return "The password must contain at least " + minVowels + " vowels.";
+    @Override
+    public int getDifficulty() {
+        return difficulty;
     }
-
 }

@@ -1,9 +1,11 @@
 package Conditions;
 
 public class Conditions_ASCIISum implements Conditions {
+    private int difficulty;
     private int targetSum;
 
     public Conditions_ASCIISum(int difficulty, int targetSum) {
+        this.difficulty = difficulty;
         this.targetSum = targetSum;
     }
 
@@ -16,8 +18,8 @@ public class Conditions_ASCIISum implements Conditions {
         return sum == targetSum;
     }
 
-    public String toString() {
-        return "The sum of ASCII values of the characters must be " + targetSum + ".";
+    @Override
+    public int getDifficulty() {
+        return difficulty;
     }
-
 }

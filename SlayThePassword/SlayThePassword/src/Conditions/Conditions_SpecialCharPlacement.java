@@ -3,6 +3,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Conditions_SpecialCharPlacement implements Conditions {
+    private int difficulty;
+
+    public Conditions_SpecialCharPlacement(int difficulty) {
+        this.difficulty = difficulty;
+    }
 
     @Override
     public boolean checkCondition(String input) {
@@ -12,8 +17,7 @@ public class Conditions_SpecialCharPlacement implements Conditions {
     }
 
     @Override
-    public String toString() {
-        return "The password must start and end with a special character.";
+    public int getDifficulty() {
+        return difficulty;
     }
-
 }

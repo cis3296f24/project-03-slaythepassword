@@ -1,7 +1,11 @@
 package Conditions;
 
-public class Conditions_CharDiversity implements Conditions{
+public class Conditions_CharDiversity implements Conditions {
+    private int difficulty;
 
+    public Conditions_CharDiversity(int difficulty) {
+        this.difficulty = difficulty;
+    }
 
     @Override
     public boolean checkCondition(String input) {
@@ -12,7 +16,8 @@ public class Conditions_CharDiversity implements Conditions{
         return hasUpper && hasLower && hasDigit && hasSpecial;
     }
 
-    public String toString() {
-        return "The password must contain uppercase, lowercase, digits, and special characters.";
+    @Override
+    public int getDifficulty() {
+        return difficulty;
     }
 }

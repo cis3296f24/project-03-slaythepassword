@@ -1,6 +1,11 @@
 package Conditions;
 
-public class Conditions_NoRepeatingChars implements Conditions{
+public class Conditions_NoRepeatingChars implements Conditions {
+    private int difficulty;
+
+    public Conditions_NoRepeatingChars(int difficulty) {
+        this.difficulty = difficulty;
+    }
 
     @Override
     public boolean checkCondition(String input) {
@@ -12,8 +17,8 @@ public class Conditions_NoRepeatingChars implements Conditions{
         return true;
     }
 
-    public String toString() {
-        return "The password must not contain any repeating characters.";
+    @Override
+    public int getDifficulty() {
+        return difficulty;
     }
-
 }

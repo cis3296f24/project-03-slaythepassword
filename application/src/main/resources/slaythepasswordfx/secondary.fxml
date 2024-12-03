@@ -10,7 +10,6 @@
         <!--Display Values-->
         <HBox alignment="TOP_LEFT" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
             <Label fx:id="HPLabel" text="Health / MaxHealth" />
-            <Label fx:id="nameLabel" text="Name" />
             <Label fx:id="LvlLabel" text ="Level: " />
         <Hbox>
         <!--Display Hints -->

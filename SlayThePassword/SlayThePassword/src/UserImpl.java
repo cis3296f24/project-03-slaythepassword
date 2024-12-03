@@ -10,27 +10,17 @@ public class UserImpl implements User{
     }
 
     @Override
-    public void losehp(Integer value){
-        if(value == null){
-            health -= 1;
-        }
-        else{
-            health -= value;
-        }
+    public void losehp(int value){
+        health -= value;
+        if (health < 0)
+            health = 0;
     }
 
     @Override
-    public void restorehp(Integer value){
-        if(value == null){
+    public void restorehp(int value){
+        health += value;
+        if (health > maxHealth)
             health = maxHealth;
-        }
-        else{
-            if(health + value >= maxHealth){
-                restorehp(maxHealth - health);
-            }else{
-                health += value;
-            }
-        }
     }
 
     @Override

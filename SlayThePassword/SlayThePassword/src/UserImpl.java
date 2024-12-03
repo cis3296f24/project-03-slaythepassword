@@ -1,5 +1,3 @@
-
-
 public class UserImpl implements User{
     public String username;
     public int health;

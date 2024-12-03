@@ -51,6 +51,29 @@ public class Game {
         level++;
     }
 
+    public void validateUserInput()
+    {
+        // Validate that the password is correct
+        try {
+            this.password.validate(this.userInput);
+        }
+        catch (AssertionError e) { // Wrong password submitted
+            // Hint will be displayed again when AssertionError is thrown
+            System.out.println(e.getMessage() + "\n");
+            this.user.losehp(1);
+
+            if (this.user.getHealth() == 0)
+            {
+                System.out.println("You lost! Game Over.");
+            }
+        }
+        // Move to next level and restore some health
+        System.out.println("Correct!\n");
+        lvl++;
+        this.user.restorehp(1);
+        this.password = new Password();
+    }
+
     /*public static void main(String[] args) throws InterruptedException {
         User user = new UserImpl();
         Password password;

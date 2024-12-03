@@ -33,9 +33,12 @@ public class Password {
         conditionsList.add(new Conditions_NoRepeatingChars(3));
         conditionsList.add(new Conditions_SpecialCharPlacement(4));
         conditionsList.add(new Conditions_CharDiversity(5));
-        conditionsList.add(new Conditions_NoDictionaryWords(6));
+        // conditionsList.add(new Conditions_NoDictionaryWords(6));
         conditionsList.add(new Conditions_PatternBased(7, "[a-zA-Z]{2}\\d{2}[a-zA-Z]{2}"));
         conditionsList.add(new Conditions_ASCIISum(8, 300));
+        conditionsList.add(new Conditions_have_two_digits());
+        conditionsList.add(new Conditions_have_lowercase());
+        conditionsList.add(new Conditions_three_digits());
         // totalDifficulty = 0;
 
         // filter conditons based on difficulty

@@ -4,26 +4,83 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
 import java.util.Random;
-import Conditions.Conditions;
 
 public class Password {
 
     private ArrayList<Conditions> conditionsList;
     private Conditions currentCondition;
 
-    public Password() {
+    // private int totalDifficulty;
+
+    public Password(int targetDifficulty) {
         // create a list to store the conditions
         conditionsList = new ArrayList<>();
-        conditionsList.add(new Conditions_add_to38());
+        conditionsList.add(new Conditions_contain_vowel());
         conditionsList.add(new Conditions_Cap());
         conditionsList.add(new Conditions_Have_Number());
         conditionsList.add(new Conditions_L1_Length());
+        conditionsList.add(new Conditions_palindrome());
+        conditionsList.add(new Conditions_threetypes());
+        conditionsList.add(new Conditions_startend_letter());
         conditionsList.add(new Conditions_Special_char());
+        conditionsList.add(new Conditions_have_twocap());
+        conditionsList.add(new Conditions_alphaSort());
+        conditionsList.add(new Conditions_have_twospecialc());
+        conditionsList.add(new Conditions_have_twocap());
+        conditionsList.add(new Conditions_containSlay());
 
-        // generate a random index for randome condition
+        // totalDifficulty = 0;
+
+        // filter conditons based on difficulty
+        List<Conditions> filteredConditions = new ArrayList<>();
+        for (Conditions condition : conditionsList) {
+            if (condition.getDifficulty() == targetDifficulty) {
+                filteredConditions.add(condition);
+
+            }
+
+        }
+        if (filteredConditions.isEmpty()) {
+            throw new IllegalArgumentException("No conditions with difficulty: " + targetDifficulty);
+
+        }
+
+        int numOfConditions = getNumofConditions(targetDifficulty);
+
+        // generate the random conditions into a list
         Random rand = new Random();
-        int index = rand.nextInt(conditionsList.size());
-        currentCondition = conditionsList.get(index);
+        List<Conditions> selectedConditions = new ArrayList<>();
+        while (selectedConditions.size() < numOfConditions && !filteredConditions.isEmpty()) {
+            // select a random conditon from the index and make sure no uniques
+            int index = rand.nextInt(filteredConditions.size());
+            selectedConditions.add(filteredConditions.remove(index));
+
+        }
+        // stack conditions if needed
+        if (numOfConditions > 1) {
+            this.currentCondition = new Stack_conditions(selectedConditions, numOfConditions);
+
+        } else {
+            this.currentCondition = selectedConditions.get(0);
+        }
+
+    }
+
+    // number of random conditons to gnerate
+    public int getNumofConditions(int targetDifficulty) {
+        // 1-3 get 1 condition
+        if (targetDifficulty <= 3) {
+            return 1;
+            // 4-6 return 2 condition
+        } else if (targetDifficulty <= 6) {
+            return 2;
+
+        }
+        // 7-8 return 3 conditions
+        else {
+            return 3;
+        }
+
     }
 
     // method to validate password

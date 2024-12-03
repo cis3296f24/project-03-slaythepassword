@@ -1,28 +1,27 @@
-
 package Conditions;
 
-public class Conditions_Have_Number implements Conditions {
+public class Conditions_containSlay implements Conditions {
 
     @Override
-
     public boolean checkCondition(String input) {
-
-        if (input == null) {
+        if (input == null || input.isEmpty()) {
             return false;
+
         }
 
-        return input.matches(".*\\d.*");
+        return input.contains("slay");
 
     }
 
     @Override
     public String toString() {
-        return "Password must include a number ";
+        return "Password must contain the word 'slay' ";
+
     }
 
     @Override
     public int getDifficulty() {
-        return 2;
+        return 6;
     }
 
 }

@@ -26,6 +26,7 @@
             <artifactId>javafx-fxml</artifactId>
             <version>13</version>
         </dependency>
+ 
         <!--<dependency>
             <groupId>slaythepassword</groupId>
             <artifactId>slaythepassword-backend</artifactId>
@@ -33,6 +34,7 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/../SlayThePassword/SlayThePassword.jar</systemPath>
         </dependency>-->
+ 
     </dependencies>
 
     <repositories>

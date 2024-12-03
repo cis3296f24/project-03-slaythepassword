@@ -17,4 +17,10 @@ public class Conditions_L1_Length implements Conditions {
     public String toString() {
         return "Password must be 10 characters long";
     }
+
+    @Override
+    public int getDifficulty() {
+        return 4;
+    }
+
 }

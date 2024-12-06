@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://6wgv8iq1lssd"
+path="res://.godot/imported/Slay The Spire OST Main Menu (1).mp3-ee723e264bf1f87fbfb9fde6772b40f2.mp3str"
+
+[deps]
+
+source_file="res://Slay The Spire OST Main Menu (1).mp3"
+dest_files=["res://.godot/imported/Slay The Spire OST Main Menu (1).mp3-ee723e264bf1f87fbfb9fde6772b40f2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

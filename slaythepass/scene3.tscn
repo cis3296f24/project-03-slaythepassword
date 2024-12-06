@@ -1,0 +1,103 @@
+[gd_scene load_steps=11 format=3 uid="uid://epvp02xilvqq"]
+
+[ext_resource type="Script" path="res://scene_3.gd" id="1_nmwf1"]
+[ext_resource type="Shader" path="res://scenenew.gdshader" id="2_m2t61"]
+[ext_resource type="AudioStream" uid="uid://cl31n7d5vggbu" path="res://The Heart.mp3" id="2_utoeb"]
+[ext_resource type="Shader" path="res://scenecheck.gdshader" id="3_wdwkc"]
+[ext_resource type="Texture2D" uid="uid://2rx20lo4rlch" path="res://Untitled_Artwork 28.png" id="4_dj8tw"]
+[ext_resource type="Script" path="res://slime_boss_pretty.gd" id="5_e3of5"]
+[ext_resource type="Texture2D" uid="uid://hjgpoyngixuv" path="res://Slime-boss-pretty.webp" id="5_l35ys"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_480rf"]
+shader = ExtResource("2_m2t61")
+shader_parameter/screen_height = 270.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sxq7l"]
+shader = ExtResource("3_wdwkc")
+shader_parameter/screen_height = 270.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orvts"]
+bg_color = Color(0.470588, 0.388235, 0.819608, 1)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(0.596078, 0.0823529, 0.533333, 1)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_nmwf1")
+
+[node name="TheHeart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_utoeb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1155.0
+offset_bottom = 649.0
+color = Color(0.299135, 0.139888, 0.143946, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_480rf")
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 1152.0
+offset_bottom = 651.0
+
+[node name="UntitledArtwork28" type="Sprite2D" parent="TextureRect"]
+material = SubResource("ShaderMaterial_sxq7l")
+position = Vector2(578.667, 377.75)
+scale = Vector2(0.53179, 0.459568)
+texture = ExtResource("4_dj8tw")
+
+[node name="Slime-boss-pretty" type="Sprite2D" parent="."]
+position = Vector2(593, 195)
+scale = Vector2(0.515714, 0.515714)
+texture = ExtResource("5_l35ys")
+script = ExtResource("5_e3of5")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 265.0
+offset_top = 450.0
+offset_right = 959.0
+offset_bottom = 544.0
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_orvts")
+
+[node name="Label" type="Label" parent="MarginContainer/Panel"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 14.0
+offset_right = 672.0
+offset_bottom = 77.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HintLabel" type="Label" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.859
+offset_left = 26.0
+offset_top = -411.0
+offset_right = 53.854
+offset_bottom = -330.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/Panel"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 49.0
+offset_right = 683.0
+offset_bottom = 85.0
+alignment = 1
+
+[node name="FightButton" type="Button" parent="MarginContainer/Panel"]
+layout_mode = 0
+offset_left = 247.0
+offset_top = -52.0
+offset_right = 422.0
+offset_bottom = -9.0
+text = "ATTACK"

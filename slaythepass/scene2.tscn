@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=3 uid="uid://cidig43eucxob"]
+
+[ext_resource type="Script" path="res://scene2.gd" id="1_ac2h5"]
+[ext_resource type="Shader" path="res://scenenew.gdshader" id="1_kkmkj"]
+[ext_resource type="Texture2D" uid="uid://2rx20lo4rlch" path="res://Untitled_Artwork 28.png" id="2_43eeq"]
+[ext_resource type="Shader" path="res://scenecheck.gdshader" id="2_hc0ji"]
+[ext_resource type="Script" path="res://margin_container.gd" id="6_j83oi"]
+[ext_resource type="Texture2D" uid="uid://cnct4nbxt6nau" path="res://stp.webp" id="6_nkw8l"]
+[ext_resource type="Script" path="res://slay_the_spire_main_characters.gd" id="6_uamni"]
+[ext_resource type="AudioStream" uid="uid://6wgv8iq1lssd" path="res://Slay The Spire OST Main Menu (1).mp3" id="8_hpnai"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_480rf"]
+shader = ExtResource("1_kkmkj")
+shader_parameter/screen_height = 270.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sxq7l"]
+shader = ExtResource("2_hc0ji")
+shader_parameter/screen_height = 270.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orvts"]
+bg_color = Color(0.470588, 0.388235, 0.819608, 1)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(0.596078, 0.0823529, 0.533333, 1)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ac2h5")
+
+[node name="slayy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_hpnai")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1155.0
+offset_bottom = 649.0
+color = Color(0.299135, 0.139888, 0.143946, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_480rf")
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 1152.0
+offset_bottom = 651.0
+
+[node name="UntitledArtwork28" type="Sprite2D" parent="TextureRect"]
+material = SubResource("ShaderMaterial_sxq7l")
+position = Vector2(573, 370)
+scale = Vector2(0.53179, 0.459568)
+texture = ExtResource("2_43eeq")
+
+[node name="SlayTheSpireMainCharacters" type="Sprite2D" parent="."]
+position = Vector2(584, 223)
+texture = ExtResource("6_nkw8l")
+script = ExtResource("6_uamni")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 265.0
+offset_top = 450.0
+offset_right = 959.0
+offset_bottom = 544.0
+script = ExtResource("6_j83oi")
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_orvts")
+
+[node name="Label" type="Label" parent="MarginContainer/Panel"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 14.0
+offset_right = 672.0
+offset_bottom = 77.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

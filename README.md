@@ -3,6 +3,9 @@ Slay the Password is an engaging and challenging Java-based password guessing ga
 
 ![This is a screenshot.](images.png)
 # How to play
+
+## Download Godot, Game Engine
+### Once Downloaded, you can add the project files, then run it in the game engine
 Slay the Password challenges players to guess a hidden password based on a set of provided conditions or hints. Each incorrect guess reduces the player's health, while successful guesses may restore health. The game continues until the player's health is depleted or they successfully guess the password.
 
 Features:

@@ -11,14 +11,15 @@
         <HBox alignment="TOP_LEFT" spacing="10.0">
             <children>
                 <Label fx:id="HPLabel" text="Health / MaxHealth" />
-                <Label fx:id="LvlLabel" text ="Level: " />
+                <Label fx:id="LvlLabel" text ="Level:" />
+                <Label fx:id="nameLabel" text="Username" style="-fx-font-weight: bold;" />
             </children>
         </Hbox>
         <!--Display Hints -->
         <VBox spacing="5.0" alignment="CENTER">
             <children>
                 <Label text="Hints:" style="-fx-font-weight: bold;" />
-                <Label fx:id="hintsLabel" wrapText="true" style="-fx-text-fill: darkgreen;" />
+                <Label fx:id="hintLabel" wrapText="true" style="-fx-text-fill: darkgreen;" />
             </children>
         </VBox>
         <!--Logo display-->
@@ -32,9 +33,10 @@
         </HBox>
         <!--User Input-->
         <VBox spacing="10.0" alignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="150.0">
-            <TextField fx:id="promptText" promptText="Enter your input" prefWidth="360.0" />
+            <TextField fx:id="userInput" promptText="${controller.promptText}" prefWidth="360.0" />
             <Button text="Submit" onAction="#captureUserInput" />
         </VBox>
+        <!-- Navigate back to homescreen without saving-->
     </children>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

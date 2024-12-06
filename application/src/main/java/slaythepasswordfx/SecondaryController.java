@@ -23,6 +23,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.locks.Condition;
 
+import game_logic.Game;
+
+//import
+
 
 public class SecondaryController {
 
@@ -37,10 +41,8 @@ public class SecondaryController {
     private Label hintLabel;
     @FXML 
     private Label LvlLabel;
-    @FXML
-    private StringProperty promptText = new SimpleStringProperty();
-
-
+    @FXML 
+    private Label nameLabel;
 
     //Essential Backend variables
 
@@ -57,6 +59,12 @@ public class SecondaryController {
     //hint texts for passwords.
     private StringProperty hintText = new SimpleStringProperty();
     //user prompt text
+    @FXML
+    private StringProperty promptText = new SimpleStringProperty();
+    //User username
+    @FXML
+    private StringProperty username = new SimpleStringProperty();
+    
 
 
     @FXML
@@ -92,6 +100,14 @@ public class SecondaryController {
         health.set(game.getUser().getHealth());
         HPLabel.textProperty().bind(Bindings.createStringBinding(() -> String.format("%d / %d", health.get(), maxHealth), health)); 
 
+        //display the level
+        lvl.set(game.getLevel());
+        LvlLabel.textProperty().bind(Bindings.createStringBinding(() -> String.format("Lvl: %d", lvl.get()), lvl));
+        
+        //display the userName
+        username.set(game.getUser().getUsername());
+        nameLabel.textProperty().bind(Bindings.createStringBinding(() -> String.format("Lvl: %d", lvl.get()), lvl));
+
         //Set the logo
         Image logo = new Image(getClass().getResourceAsStream("/assets/Untitled_Artwork_27.PNG"));
         logoImageView.setImage(logo); 
@@ -101,9 +117,10 @@ public class SecondaryController {
         hintText.set(hints);
         hintLabel.textProperty().bind(hintText);
 
-        //display the level
-        lvl.set(game.getLevel());
-        lvlLabel.textProperty().bind(Bindings.createStringBinding(() -> String.format("Lvl: %d", lvl.get()), lvl));
+        //display the username
+        username.set(game.getUser().getUsername());
+        nameLabel.textProperty().bind(username);
+
         
     }
 
@@ -128,12 +145,10 @@ public class SecondaryController {
         //user input
         String Input = userInput.getText();
 
-
-
         //correct input.
         boolean correct = game.validateUserInput(Input); //assign to value and run function. Game logic present inside game class.
         if(correct){
-            userInput.clear();
+            game.getUser().restorehp(1);
             setDisplays();
         }else{
             health.set(game.getUser().getHealth()); //duduct health on U.I
@@ -149,16 +164,20 @@ public class SecondaryController {
 
     private void EndPopup(){
         //Alert the user that the game has reached its end
-        Alert gameOver = new Alert(AlertType.INFORMATION);
+        Alert gameOver = new Alert(Alert.AlertType.INFORMATION);
         gameOver.setTitle("Game Over");
         gameOver.setContentText("Your health has reached 0.");
 
         //wait for user to close popup
         gameOver.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
-            switchToPrimary();
+                try {
+                    switchToPrimary();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-        );
+        });
     }
 
     private void loadPromptsFromFile(String filePath) throws IOException {
